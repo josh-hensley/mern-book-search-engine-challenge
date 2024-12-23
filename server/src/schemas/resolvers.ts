@@ -42,7 +42,7 @@ const resolvers: any = {
     }
   },
   Mutation: {
-    createUser: async (_parent: any, { input }: AddUserArgs) => {
+    addUser: async (_parent: any, { input }: AddUserArgs) => {
       // Create a new user with the provided username, email, and password
       const user = await User.create({ ...input });
     
