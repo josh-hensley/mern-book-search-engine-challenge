@@ -26,7 +26,6 @@ interface AddBookArgs {
     authors: string[];
     description: string;
     image: string;
-    link: string;
   }
 }
 
@@ -87,7 +86,6 @@ const resolvers: any = {
         return user;
       }
       throw AuthenticationError;
-      ('You need to be logged in!');
     },
     deleteBook: async (_parent: any, { bookId }: BookArgs, context: any) => {
       if (context.user) {
