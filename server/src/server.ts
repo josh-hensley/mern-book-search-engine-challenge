@@ -1,20 +1,12 @@
-// --Old Imports--
-// import express from 'express';
-// import path from 'node:path';
-// import db from './config/connection.js';
-// import routes from './routes/index.js';
-
-// New imports for Apollo
 import express from 'express';
 import path from 'node:path';
+import cors from 'cors';
 import type { Request, Response } from 'express';
 import db from './config/connection.js'
 import { ApolloServer } from '@apollo/server';// Note: Import from @apollo/server-express
 import { expressMiddleware } from '@apollo/server/express4';
 import { typeDefs, resolvers } from './schemas/index.js';
 import { authenticateToken } from './utils/auth.js';
-
-//  New Apollo graphql express setup
 
 const server = new ApolloServer({
   typeDefs,
@@ -30,6 +22,7 @@ const startApolloServer = async () => {
 
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
+  app.use(cors());
 
   app.use('/graphql', expressMiddleware(server as any,
     {

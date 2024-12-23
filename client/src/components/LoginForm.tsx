@@ -10,7 +10,7 @@ import { useMutation } from '@apollo/client';
 
 // biome-ignore lint/correctness/noEmptyPattern: <explanation>
 const LoginForm = ({}: { handleModalClose: () => void }) => {
-  const [userFormData, setUserFormData] = useState<User>({ username: '', email: '', password: '', savedBooks: [] });
+  const [userFormData, setUserFormData] = useState<User>({ username: '', email: '', password: '', savedBooks: [], bookCount: null });
   const [login, { loading, error }] = useMutation(LOGIN_USER);
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
@@ -46,6 +46,7 @@ const LoginForm = ({}: { handleModalClose: () => void }) => {
       email: '',
       password: '',
       savedBooks: [],
+      bookCount: null
     });
   };
   if (loading) return `Loading...`;

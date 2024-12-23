@@ -9,12 +9,7 @@ import type { User } from '../models/User';
 
 const SavedBooks = () => {
   const { loading, data } = useQuery(GET_ME);
-  const userData: User = data?.user || {
-    username: '',
-    email: '',
-    password: '',
-    savedBooks: [],
-  } 
+  const userData: User | null = data?.me || null; 
   const [removeBook, { error }] = useMutation(REMOVE_BOOK);
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
@@ -42,6 +37,9 @@ const SavedBooks = () => {
   if (loading) {
     return <h2>LOADING...</h2>;
   }
+  if (!userData) {
+    return <h2>No user data found!</h2>
+  }
   if (error) return `Error: ${error.message}`;
 
   return (
@@ -57,9 +55,9 @@ const SavedBooks = () => {
       </div>
       <Container>
         <h2 className='pt-5'>
-          {userData.savedBooks.length
-            ? `Viewing ${userData.savedBooks.length} saved ${
-                userData.savedBooks.length === 1 ? 'book' : 'books'
+          {userData.bookCount
+            ? `Viewing ${userData.bookCount} saved ${
+                userData.bookCount === 1 ? 'book' : 'books'
               }:`
             : 'You have no saved books!'}
         </h2>
