@@ -9,7 +9,7 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import Navbar from './components/Navbar';
 import { Outlet } from 'react-router-dom';
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 10000;
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
