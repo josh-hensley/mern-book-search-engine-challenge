@@ -2,7 +2,9 @@ import { useState } from 'react';
 import type { ChangeEvent, FormEvent } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 
-import { createUser } from '../utils/API';
+// import { createUser } from '../utils/API';
+import { CREATE_USER } from '../utils/mutations';
+import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import type { User } from '../models/User';
 
@@ -10,6 +12,7 @@ import type { User } from '../models/User';
 const SignupForm = ({}: { handleModalClose: () => void }) => {
   // set initial form state
   const [userFormData, setUserFormData] = useState<User>({ username: '', email: '', password: '', savedBooks: [] });
+  const [createUser, { error, loading }] = useMutation(CREATE_USER);
   // set state for form validation
   const [validated] = useState(false);
   // set state for alert
@@ -31,14 +34,9 @@ const SignupForm = ({}: { handleModalClose: () => void }) => {
     }
 
     try {
-      const response = await createUser(userFormData);
-
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
-
-      const { token } = await response.json();
-      Auth.login(token);
+      const { data } = await createUser({ variables: { ...userFormData } });
+      Auth.login(data.createUser.token);
+      
     } catch (err) {
       console.error(err);
       setShowAlert(true);
@@ -51,6 +49,9 @@ const SignupForm = ({}: { handleModalClose: () => void }) => {
       savedBooks: [],
     });
   };
+
+  if (error) return `${error.message}`;
+  if (loading) return `Loading...`;
 
   return (
     <>
