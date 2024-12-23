@@ -79,27 +79,23 @@ const resolvers: any = {
       if (context.user) {
         const book = { ...input };
 
-        await User.findOneAndUpdate(
+        const user = await User.findOneAndUpdate(
           { _id: context.user._id },
           { $addToSet: { savedBooks: book } }
         );
 
-        return book;
+        return user;
       }
       throw AuthenticationError;
       ('You need to be logged in!');
     },
     deleteBook: async (_parent: any, { bookId }: BookArgs, context: any) => {
       if (context.user) {
-        const book = await User.findOneAndUpdate(
+        const user = await User.findOneAndUpdate(
           { _id: context.user._id },
           { $pull: { savedBooks: { _id: bookId } } }
         )
-
-        if(!book){
-          throw new Error("book does not exist");
-        }
-        return book;
+        return user;
       }
       throw AuthenticationError;
     }
