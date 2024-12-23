@@ -9,11 +9,10 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import Navbar from './components/Navbar';
 import { Outlet } from 'react-router-dom';
-const PORT = process.env.PORT || 10000;
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
-  uri: `http://localhost:${PORT}/graphql`,
+  uri: `/graphql`,
 });
 
 // Construct request middleware that will attach the JWT token to every request as an `authorization` header
