@@ -3,6 +3,5 @@ export interface Book {
   description: string;
   bookId: string;
   image: string;
-  link: string;
   title: string;
 }
