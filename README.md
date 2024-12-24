@@ -4,7 +4,7 @@
 
 ## Description
 
-This challenge gave me the task of converting an app with a  RESTful API to an app that uses GraphQL and Apollo.
+This challenge gave me the task of converting an app with a RESTful API to an app that uses GraphQL and Apollo.  You can create a user login and search for and save a reading/book buying list.
 
 ## Table of Contents
 
@@ -19,11 +19,15 @@ This challenge gave me the task of converting an app with a  RESTful API to an a
 
 ## <a name="Installation"></a>Installation
 
-Explain how to install.
+No need to install if you are using the [deployed app](https://mern-book-search-engine-challenge.onrender.com).
+
+To run locally:  This app requires [Node.js](https://nodejs.org/en/download/prebuilt-installer).  To install dependencies, using a command line run `npm i` from the root directory.  
 
 ## <a name="Usage"></a>Usage
 
-Explain how to use.
+Follow the link to the [deployed app](https://mern-book-search-engine-challenge.onrender.com).  To search for a book title, use the search bar.  If you would like to save some selections, create a user profile by clicking sign up/login on the navbar, selecting sign up on the modal and filling out the form.  After creating a profile you will be logged in and will have the option to save books to your list.  You can view your saved books by clicking the See your books link.  If you wish to remove a book from the list, you can do so by clicking Delete this book.  If you log out and wish to return, log in with your email and password.
+
+To run locally:  after installing dependencies, run `npm run build` to build dist folders then `npm run dev` to start the server and vite in a dev environment.  Access the app at http://localhost:3000.
 
 ## <a name="license"></a>License
 
